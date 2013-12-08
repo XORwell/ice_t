@@ -30,11 +30,13 @@ describe IceT::Schedule do
   end
 
   describe '#to_json' do
-    pending
+    it { expect(subject).to respond_to(:to_json) }
+    it { expect(subject.to_json).to be_an(String) }
   end
   
   describe '#to_yaml' do
-    pending
+    it { expect(subject).to respond_to(:to_yaml) }
+    it { expect(subject.to_json).to be_an(String) }
   end
 
   describe '::from_json' do

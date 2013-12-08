@@ -30,13 +30,8 @@ module IceT
         data[:rules]["rules"].each{ |rule|
           rule_class = rule['rule']
           interval = rule['interval'].to_i
-          at = rule['at']  
-          init = if at.nil?
-                   rule_class + ".new(#{interval})"
-                 else
-                   rule_class + ".new(#{interval}, '#{at}')"
-                 end 
-          obj_rule = eval(init)
+          obj_rule = eval(rule_class + ".new(#{interval})")
+          obj_rule.at = rule['at']
           schedule.add_rule(obj_rule)
         }
         
