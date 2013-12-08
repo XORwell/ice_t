@@ -9,6 +9,19 @@ shared_examples 'a rule' do
 
   describe '#occurrences' do
     it { expect(klass.new).to respond_to(:occurrences) }
+    
+    let(:rule){ klass.new(1) }
+    let(:start_time){ Time.now }
+    let(:duration){ eval("2.#{klass.unit}") }
+    let(:end_time){ start_time + duration }
+    subject { rule.occurrences(start_time, start_time + duration) }
+    
+    it 'does contain the start_time' do
+      expect(subject.first).to eql(start_time)
+    end
+    it 'does contain the end_time' do
+      expect(subject.last).to eql(end_time)
+    end
   end
 
   describe '::from_json' do

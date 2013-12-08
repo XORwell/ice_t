@@ -53,7 +53,7 @@ module IceT
 
       def occurrences(start_time, end_time)
         diff = IceT::TimeHelper.diff_by_unit(start_time, end_time, self.class.unit)
-        (1..diff).step(self.interval).map { |i|
+        (0..diff).step(self.interval).map { |i|
           start_time.advance(self.class.unit => i)
         }
       end
