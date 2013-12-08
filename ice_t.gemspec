@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["christian.nennemann@gmail.com"]
   spec.description   = %q{IceT is a ruby library for handling repeated events}
   spec.summary       = %q{Ruby Time Recurrence}
-  spec.homepage      = "https://github.com/XORwell/IceT"
+  spec.homepage      = "https://github.com/XORwell/ice_t"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

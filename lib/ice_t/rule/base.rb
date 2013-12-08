@@ -59,7 +59,7 @@ module IceT
       end
 
       # private
-      # def at_ajusted_time(time)
+      # def at_adjusted_time(time)
       #   unless @at.nil?
       #     t = Time.parse(@at)
       #   end
