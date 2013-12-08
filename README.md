@@ -26,14 +26,19 @@ Or install it yourself as:
 ### Creating rules
 
 ```ruby
-rule = IceT::Rule::Secondly.new(42)  # => step by 42 seconds
-rule = IceT::Rule::Minutely.new(42)  # => step by 42 minutes
-rule = IceT::Rule::Hourly.new(42)    # => step by 42 hours
-rule = IceT::Rule::Daily.new(42)     # => step by 42 days
-rule = IceT::Rule::Weekly.new(42)    # => step by 42 weeks
-rule = IceT::Rule::Monthly.new(42)   # => step by 42 months
-rule = IceT::Rule::Yearly.new(42)    # => step by 42 years
+rule = IceT::Rule::Secondly.new(42)  # => every 42 seconds
+rule = IceT::Rule::Minutely.new(42)  # => every 42 minutes
+rule = IceT::Rule::Hourly.new(42)    # => every 42 hours
+rule = IceT::Rule::Daily.new(42)     # => every 42 days
+rule = IceT::Rule::Weekly.new(42)    # => every 42 weeks
+rule = IceT::Rule::Monthly.new(42)   # => every 42 months
+rule = IceT::Rule::Yearly.new(42)    # => every 42 years
 ```
+
+```ruby
+rule = IceT::Rule::Secondly.new      # => every second
+```
+
 
 ### Get time occurrences
 
@@ -55,15 +60,14 @@ schedule.occurrences        # => Merged occurrences
 
 ### Persistence
 
-Lets say you want to your Schedule in your database
-and use it later again. You can do this:
+Lets say you want to store and restore your Schedule. Do this:
 
 ```ruby
 json = schedule.to_json
 schedule = IceT::Schedule.from_json(json)
 ```
 
-## Tipps - doc in development
+## Tipps - section is under construction
 
 ### Sorting rules:
 
@@ -74,4 +78,5 @@ schedule = IceT::Schedule.from_json(json)
 ```ruby
 IceT::Rule::Daily.new(1) < IceT::Rule::Monthly.new(1) # => true
 ```
-	r2.between?(r1, r3)
+
+r2.between?(r1, r3)
