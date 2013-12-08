@@ -1,6 +1,7 @@
 # IceT
 
 [![Code Climate](https://codeclimate.com/github/XORwell/ice_t.png)](https://codeclimate.com/github/XORwell/ice_t)
+[![Build Status](https://travis-ci.org/XORwell/ice_t.png)](https://travis-ci.org/XORwell/ice_t)
 
 TODO: Write a gem description
 
