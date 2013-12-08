@@ -3,13 +3,22 @@ shared_examples 'a rule' do
   describe '::to_i' do
     it { expect(klass).to respond_to(:to_i) }
   end
+  describe '::unit' do
+    it { expect(klass).to respond_to(:unit) }
+  end
+
+  describe '#occurrences' do
+    it { expect(klass.new).to respond_to(:occurrences) }
+  end
 
   describe '::from_json' do
-    it { expect(klass).to respond_to(:from_json) }    
+    pending
+    #it { expect(klass).to respond_to(:from_json) }    
   end
 
   describe '::from_yaml' do
-    it { expect(klass).to respond_to(:from_yaml) }    
+    pending
+    #it { expect(klass).to respond_to(:from_yaml) }    
   end
 
   describe '#to_json' do
@@ -24,9 +33,6 @@ shared_examples 'a rule' do
     it {expect(klass.new(1, "4pm").at).to eql("4pm")}
   end
 
-  describe '#occurrences' do
-    it { expect(klass.new).to respond_to(:occurrences) }
-  end
 
   describe 'comparison' do
     classes = IceT::Rule::Base.descendants.sort

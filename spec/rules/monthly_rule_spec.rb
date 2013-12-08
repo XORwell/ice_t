@@ -5,16 +5,10 @@ describe IceT::Rule::Monthly do
   let(:klass) { IceT::Rule::Monthly }
   it_behaves_like "a rule"
 
-
   let!(:interval) { 1 }
   let!(:start_time) { 1.year.ago }
   let!(:end_time) { Time.now }
   let(:rule) { IceT::Rule::Monthly.new(interval) }
-
-  # it_behaves_like "a comparable rule" do
-  #   let(:small_rule) { IceT::Rule::Monthly.new(1) }
-  #   let(:big_rule) { IceT::Rule::Monthly.new(2) }
-  # end
 
 
   describe "#occurrences" do
@@ -36,12 +30,4 @@ describe IceT::Rule::Monthly do
 
   end
   
-  describe "::from_yaml" do
-    pending
-  end
-  
-  describe "::from_json" do
-    pending
-  end
-
 end
