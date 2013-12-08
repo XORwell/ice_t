@@ -9,6 +9,8 @@ module IceT
         end
       end
 
+      include IceT::Conversions::Rule
+
       attr_reader :interval
       attr_reader :at
 

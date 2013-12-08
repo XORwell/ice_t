@@ -1,5 +1,22 @@
 module IceT
   module Conversions
+    module Rule
+
+      def self.included(klass)
+        klass.extend ClassMethods
+      end
+
+      def to_hash
+        self.instance_values.symbolize_keys
+      end
+
+      module ClassMethods      
+        def from_yaml(yaml_string)
+          rule = YAML::load(yaml_string)
+        end
+      end
+    end
+
     module Schedule
       def from_json(json_string)
         data = ActiveSupport::JSON.decode(json_string).symbolize_keys

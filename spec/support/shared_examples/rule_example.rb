@@ -42,6 +42,10 @@ shared_examples 'a rule' do
     it { expect(klass.new).to respond_to(:to_yaml) }
   end
 
+  describe '#to_hash' do
+    it { expect(klass.new).to respond_to(:to_hash) }
+  end
+
   describe '#@at' do
     it {expect(klass.new(1, "4pm").at).to eql("4pm")}
   end

@@ -101,4 +101,10 @@ describe IceT::Rule::Base do
     }
   end
 
+  describe '.from_yaml' do
+    let(:rule) { IceT::Rule::Daily.new(42) }
+    let(:yaml) { rule.to_yaml }
+    it { expect(IceT::Rule::Daily.from_yaml(yaml) == rule ).to be_true }
+  end
+
 end

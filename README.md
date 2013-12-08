@@ -80,8 +80,10 @@ schedule = IceT::Schedule.from_json(json)
 IceT::Rule::Daily.new(1) < IceT::Rule::Monthly.new(1) # => true
 ```
 
+```ruby
 r2.between?(r1, r3)
-
+```
+IceT::Rule::Daily.new(14).occurrences(1.year.ago, Time.now).first(5)
 
 
 ## License
