@@ -34,22 +34,26 @@ module IceT
 
       include Comparable
       def <=>(other)
-        case
-        when self.class == other.class &&
-             self.interval == other.interval
-             0
-        when self.class == other.class &&
-             self.interval < other.interval
-             -1 
-        when self.class == other.class &&
-             self.interval > other.interval
-             +1             
-        when self.class.to_i < other.class.to_i
-             -1
-        when self.class.to_i > other.class.to_i
-             +1
+        if self.class == other.class
+          case
+          when self.interval == other.interval
+            0
+          when self.interval < other.interval
+            -1 
+          when self.interval > other.interval
+            +1
+          else 
+            nil
+          end
         else
-          nil
+          case 
+          when self.class.to_i < other.class.to_i
+            -1
+          when self.class.to_i > other.class.to_i
+            +1
+          else
+            nil
+          end
         end
       end
 
