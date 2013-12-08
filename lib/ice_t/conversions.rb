@@ -20,13 +20,9 @@ module IceT
     module Schedule
       def from_json(json_string)
         data = ActiveSupport::JSON.decode(json_string).symbolize_keys
-        
-        options = {
-          start_time: data[:start_time].to_time,
-          end_time: data[:end_time].to_time
-        }
-        schedule = self.new(options)
+        schedule = self.new(start_time: data[:start_time].to_time, end_time: data[:end_time].to_time)
 
+        # TODO: use same builder of/for rules
         data[:rules]["rules"].each{ |rule|
           rule_class = rule['rule']
           interval = rule['interval'].to_i
@@ -37,7 +33,6 @@ module IceT
         
         schedule
       end   
-
 
       def from_yaml(yaml_string)
         schedule = YAML::load(yaml_string)

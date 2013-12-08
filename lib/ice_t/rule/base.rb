@@ -42,8 +42,6 @@ module IceT
             -1 
           when self.interval > other.interval
             +1
-          else 
-            nil
           end
         else
           case 
@@ -51,8 +49,6 @@ module IceT
             -1
           when self.class.to_i > other.class.to_i
             +1
-          else
-            nil
           end
         end
       end
@@ -64,12 +60,6 @@ module IceT
         }
       end
 
-      # private
-      # def at_adjusted_time(time)
-      #   unless @at.nil?
-      #     t = Time.parse(@at)
-      #   end
-      # end
     end
   end
 end
