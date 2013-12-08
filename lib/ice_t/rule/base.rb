@@ -57,6 +57,7 @@ module IceT
 
       include Comparable
       def <=>(other)
+        return unless other.class.respond_to?(:to_i)
         if self.class == other.class
           case
           when self.interval == other.interval

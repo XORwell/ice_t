@@ -63,6 +63,10 @@ describe IceT::Rule::Base do
         }        
       end
     }
+
+    subject { IceT::Rule::Daily.new(1) }
+    it { expect{subject < "a"}.to raise_error }
+    it { expect{subject > 1}.to raise_error }
   end
 
 
