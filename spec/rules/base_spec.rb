@@ -2,6 +2,70 @@ require 'spec_helper'
 
 describe IceT::Rule::Base do
 
+  describe 'descendants comparison' do
+    classes = IceT::Rule::Base.descendants.sort
+    classes.each_with_index { | obj, i |
+      describe "#{obj}" do
+        classes.each_with_index { | other, j |
+          case 
+          when i == j
+            it "#{obj} == #{other}" do
+              expect(obj==other).to be_true
+            end
+            it "#{obj}.new(1) == #{other}.new(1)" do
+              expect(obj.new(1) == other.new(1)).to be_true
+            end
+            it "#{obj}.new(1) < #{other}.new(2)" do
+              expect(obj.new(1) < other.new(2)).to be_true
+            end
+            it "#{obj}.new(2) > #{other}.new(1)" do
+              expect(obj.new(2) > other.new(1)).to be_true
+            end
+            it "#{obj}.new(1) <= #{other}.new(1)" do
+              expect(obj.new(1) <= other.new(1)).to be_true
+            end
+            it "#{obj}.new(1) >= #{other}.new(1)" do
+              expect(obj.new(1) >= other.new(1)).to be_true
+            end            
+          when i > j
+            it "#{obj} > #{other} is true" do
+              expect(obj > other).to be_true
+            end
+            it "#{obj} < #{other} is false" do
+              expect(obj < other).to be_false
+            end
+            it "#{obj} == #{other} is false" do
+              expect(obj == other).to be_false
+            end
+            it "#{obj}.new(1) > #{other}.new(1) is true" do
+              expect(obj.new(1) > other.new(1)).to be_true
+            end
+            it "#{obj}.new(1) < #{other}.new(1) is false" do
+              expect(obj.new(1) < other.new(1)).to be_false
+            end
+            it "#{obj}.new(1) == #{other}.new(1) is false" do
+              expect(obj.new(1) == other.new(1)).to be_false
+            end
+          when i < j
+            it "#{obj} < #{other} is true" do
+              expect(obj < other).to be_true
+            end            
+            it "#{obj} > #{other} is false" do
+              expect(obj > other).to be_false
+            end            
+            it "#{obj} == #{other} is false" do
+              expect(obj == other).to be_false
+            end            
+            it "#{obj}.new(1) < #{other}.new(1)" do
+              expect(obj.new(1) < other.new(1)).to be_true
+            end            
+          end
+        }        
+      end
+    }
+  end
+
+
   describe '.new' do
     describe 'param: interval' do
       context 'when valid' do
