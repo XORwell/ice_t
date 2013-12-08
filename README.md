@@ -47,6 +47,7 @@ rule.occurrences # => Array of times
 ```
 
 ### Schedule
+
 The Schedule helps on dealing with multiple rules.
 
 ```ruby
@@ -80,3 +81,18 @@ IceT::Rule::Daily.new(1) < IceT::Rule::Monthly.new(1) # => true
 ```
 
 r2.between?(r1, r3)
+
+
+
+## License
+This software is released under the [MIT License](http://opensource.org/licenses/MIT).
+
+Copyright © 2013 Christian Nennemann _(christian.nennemann[at]gmail[dot]com)_
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
