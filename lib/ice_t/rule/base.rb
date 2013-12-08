@@ -20,7 +20,7 @@ module IceT
                                                                 interval % 1 != 0
         @interval = interval
         @at = at_str
-        @export_class_name = self.class.name
+        @rule = self.class.name
         self.at = at_str unless @at.nil?
       end
 

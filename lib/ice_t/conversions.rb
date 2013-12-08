@@ -28,7 +28,7 @@ module IceT
         schedule = self.new(options)
 
         data[:rules]["rules"].each{ |rule|
-          rule_class = rule['export_class_name']
+          rule_class = rule['rule']
           interval = rule['interval'].to_i
           at = rule['at']  
           init = if at.nil?
