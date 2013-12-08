@@ -38,14 +38,14 @@ rule = IceT::Rule::Yearly.new(42)    # => step by 42 years
 ### Get time occurrences
 
 ```ruby
-rule.occurrences(2.months.ago, Time.now) # => Array of times
+rule.occurrences # => Array of times
 ```
 
 ### Schedule
 The Schedule helps on dealing with multiple rules.
 
 ```ruby
-schedule = IceT::Schedule.new
+schedule = IceT::Schedule.new(start_time: Time.now, end_time: Time.now + 4.months)
 schedule.add_rule my_daily_rule
 schedule.add_rule my_monthly_rule
 
@@ -53,7 +53,7 @@ schedule.rules              # => Array of rules
 schedule.occurrences        # => Merged occurrences
 ```
 
-### Serialization
+### Persistence
 
 Lets say you want to your Schedule in your database
 and use it later again. You can do this:
