@@ -1,14 +1,11 @@
-
 require 'rubygems'
 require 'bundler/setup'
-# require 'active_support/all'
 require 'coveralls'
-Coveralls.wear!
-
 require 'ice_t'
 
-Dir.glob(File.expand_path("spec/support/**/*.rb")).each{ |f| require f }
+Coveralls.wear!
 
+Dir.glob(File.expand_path("spec/support/**/*.rb")).each{ |f| require f }
 
 RSpec.configure do |config|
   config.color_enabled = true

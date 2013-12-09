@@ -40,6 +40,18 @@ rule = IceT::Rule::Yearly.new(42)    # => every 42 years
 rule = IceT::Rule::Secondly.new      # => every second
 ```
 
+### Rule in words (i18n)
+
+```ruby
+# I18n.locale = :en
+rule = IceT::Rule::Daily.new(14)
+rule.to_s # => "every 14 days"
+
+# I18n.locale = :de
+rule = IceT::Rule::Daily.new(14)
+rule.to_s # => "alle 14 Tage"
+```
+
 
 ### Get time occurrences
 
