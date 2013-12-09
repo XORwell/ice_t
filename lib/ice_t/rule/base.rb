@@ -73,6 +73,9 @@ module IceT
         }
       end
 
+      def to_s
+        I18n.t "ice_t.each_#{self.class.unit[0..-2]}", count: self.interval
+      end
     end
   end
 end

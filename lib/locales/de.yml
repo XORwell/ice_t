@@ -1,0 +1,23 @@
+de:
+  ice_t:
+    each_second:
+      one: sekündlich
+      other: alle %{count} Sekunden
+    each_minute:
+      one: minütlich
+      other: alle %{count} Minuten
+    each_hour:
+      one: stündlich
+      other: alle %{count} Stunden
+    each_day:
+      one: täglich
+      other: alle %{count} Tage
+    each_week:
+      one: wöchentlich
+      other: alle %{count} Wochen
+    each_month:
+      one: monatlich
+      other: alle %{count} Monate
+    each_year:
+      one: jährlich
+      other: alle %{count} Jahre

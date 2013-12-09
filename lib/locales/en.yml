@@ -1,3 +1,23 @@
 en:
   ice_t:
-    hello: world
+    each_second:
+      one: secondly
+      other: every %{count} seconds
+    each_minute:
+      one: minutely
+      other: every %{count} minutes
+    each_hour:
+      one: hourly
+      other: every %{count} hours
+    each_day:
+      one: daily
+      other: every %{count} days
+    each_week:
+      one: weekly
+      other: every %{count} weeks
+    each_month:
+      one: monthly
+      other: every %{count} months
+    each_year:
+      one: yearly
+      other: every %{count} years
