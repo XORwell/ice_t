@@ -43,7 +43,10 @@ rule = IceT::Rule::Secondly.new      # => every second
 ### Get time occurrences
 
 ```ruby
-rule.occurrences # => Array of times
+rule.occurrences(2.days.ago, Time.now) # => Array of times
+
+IceT::Rule::Daily.new(14).occurrences(1.year.ago, Time.now).first(5)
+
 ```
 
 ### Schedule
@@ -61,29 +64,68 @@ schedule.occurrences        # => Merged occurrences
 
 ### Persistence
 
-Lets say you want to store and restore your Schedule. Do this:
+Store and restore your rule:
+
+```ruby
+
+# JSON
+rule = IceT::Rule::Daily.new(42)
+json = rule.to_json
+restored = IceT::Rule::Base.from_json(json)
+
+# YAML
+rule = IceT::Rule::Daily.new(42)
+yaml = rule.to_yaml
+restored = IceT::Rule::Base.from_yaml(yaml)
+
+# Hash
+rule = IceT::Rule::Daily.new(42)
+hash = rule.to_hash
+restored = IceT::Rule::Base.from_hash(hash)
+
+```
+
+
+
+Store and restore your Schedule:
 
 ```ruby
 json = schedule.to_json
 schedule = IceT::Schedule.from_json(json)
 ```
 
-## Tipps - section is under construction
 
-### Sorting rules:
-
-[r2,r1,r3].sort.collect(&:interval) 
-
-### Comparing rules:
+### Comparisons and sorting
 	
 ```ruby
 IceT::Rule::Daily.new(1) < IceT::Rule::Monthly.new(1) # => true
 ```
 
 ```ruby
-r2.between?(r1, r3)
+# compare different type of rules
+
+minutely = IceT::Rule::Minutely.new(1)
+hourly   = IceT::Rule::Hourly.new(1)
+daily    = IceT::Rule::Daily.new(1)
+
+hourly.between?(minutely, daily) # => true
+minutely.between?(hourly, daily) # => false
+
+
+# compare same type of rules
+
+r1 = IceT::Rule::Daily.new(1)
+r2 = IceT::Rule::Daily.new(2)
+r3 = IceT::Rule::Daily.new(3)
+
+r2.between?(r1, r2)	# => true
+r1.between?(r2, r3)	# => false
+
+# sort these rules
+
+[r2,r1,r3].sort.collect(&:interval) # => [1, 2, 3]
+
 ```
-IceT::Rule::Daily.new(14).occurrences(1.year.ago, Time.now).first(5)
 
 
 ## License
