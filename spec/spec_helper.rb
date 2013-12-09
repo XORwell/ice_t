@@ -1,6 +1,9 @@
+
 require 'rubygems'
 require 'bundler/setup'
 # require 'active_support/all'
+require 'coveralls'
+Coveralls.wear!
 
 require 'ice_t'
 
