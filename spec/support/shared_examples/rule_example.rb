@@ -1,4 +1,5 @@
 shared_examples 'a rule' do  
+  let(:rule){ klass.new(1) }
   
   describe '::to_i' do
     it { expect(klass).to respond_to(:to_i) }
@@ -10,7 +11,6 @@ shared_examples 'a rule' do
   describe '#occurrences' do
     it { expect(klass.new).to respond_to(:occurrences) }
     
-    let(:rule){ klass.new(1) }
     let(:start_time){ Time.now }
     let(:duration){ eval("2.#{klass.unit}") }
     let(:end_time){ start_time + duration }
@@ -24,14 +24,19 @@ shared_examples 'a rule' do
     end
   end
 
+
   describe '::from_json' do
-    pending
-    #it { expect(klass).to respond_to(:from_json) }    
+    it { expect(klass).to respond_to(:from_json) }
+    it { expect(klass.from_json(rule.to_json) == rule).to be_true }    
+  end
+  describe '::from_hash' do
+    it { expect(klass).to respond_to(:from_hash) }    
+    it { expect(klass.from_hash(rule.to_hash) == rule).to be_true }    
   end
 
   describe '::from_yaml' do
-    pending
-    #it { expect(klass).to respond_to(:from_yaml) }    
+    it { expect(klass).to respond_to(:from_yaml) }    
+    it { expect(klass.from_yaml(rule.to_yaml) == rule).to be_true }    
   end
 
   describe '#to_json' do

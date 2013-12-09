@@ -35,7 +35,18 @@ module IceT
 
       module ClassMethods      
         def from_yaml(yaml_string)
-          rule = YAML::load(yaml_string)
+          YAML::load(yaml_string)
+        end
+        def from_json(json_string)
+          hash = ActiveSupport::JSON.decode(json_string).symbolize_keys
+          self.from_hash(hash)
+        end
+        def from_hash(hash)
+          rule_class = hash[:rule]
+          interval   = hash[:interval].to_i          
+          rule       = eval(rule_class + ".new(#{interval})")
+          rule.at    = hash[:at]
+          rule          
         end
       end
     end
@@ -44,16 +55,11 @@ module IceT
       def from_json(json_string)
         data = ActiveSupport::JSON.decode(json_string).symbolize_keys
         schedule = self.new(start_time: data[:start_time].to_time, end_time: data[:end_time].to_time)
-
-        # TODO: use same builder of/for rules
         data[:rules]["rules"].each{ |rule|
-          rule_class = rule['rule']
-          interval = rule['interval'].to_i
-          obj_rule = eval(rule_class + ".new(#{interval})")
-          obj_rule.at = rule['at']
-          schedule.add_rule(obj_rule)
-        }
-        
+          schedule.add_rule(
+            IceT::Rule::Base.from_json(rule.to_json)
+          )
+        }        
         schedule
       end   
 
