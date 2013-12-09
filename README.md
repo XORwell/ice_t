@@ -49,19 +49,6 @@ IceT::Rule::Daily.new(14).occurrences(1.year.ago, Time.now).first(5)
 
 ```
 
-### Schedule
-
-The Schedule helps on dealing with multiple rules.
-
-```ruby
-schedule = IceT::Schedule.new(start_time: Time.now, end_time: Time.now + 4.months)
-schedule.add_rule my_daily_rule
-schedule.add_rule my_monthly_rule
-
-schedule.rules              # => Array of rules
-schedule.occurrences        # => Merged occurrences
-```
-
 ### Persistence
 
 Store and restore the rule:
@@ -83,15 +70,6 @@ rule = IceT::Rule::Daily.new(42)
 hash = rule.to_hash
 restored = IceT::Rule::Base.from_hash(hash)
 
-```
-
-
-
-Store and restore the Schedule:
-
-```ruby
-json = schedule.to_json
-schedule = IceT::Schedule.from_json(json)
 ```
 
 
