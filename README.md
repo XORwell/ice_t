@@ -64,7 +64,7 @@ schedule.occurrences        # => Merged occurrences
 
 ### Persistence
 
-Store and restore your rule:
+Store and restore the rule:
 
 ```ruby
 
@@ -87,7 +87,7 @@ restored = IceT::Rule::Base.from_hash(hash)
 
 
 
-Store and restore your Schedule:
+Store and restore the Schedule:
 
 ```ruby
 json = schedule.to_json
@@ -95,7 +95,7 @@ schedule = IceT::Schedule.from_json(json)
 ```
 
 
-### Comparisons and sorting
+### Comparison and sorting
 	
 ```ruby
 IceT::Rule::Daily.new(1) < IceT::Rule::Monthly.new(1) # => true
