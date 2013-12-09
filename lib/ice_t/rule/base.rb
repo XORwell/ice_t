@@ -35,24 +35,13 @@ module IceT
       include IceT::Conversions::Rule
 
       attr_reader :interval
-      attr_reader :at
 
-      def initialize(interval = 1, at_str = nil)
+      def initialize(interval = 1)
         raise ArgumentError.new('Positive integer required') if interval.nil? ||
                                                                 interval.to_i < 1 ||
                                                                 interval % 1 != 0
-        @interval = interval
-        @at = at_str
         @rule = self.class.name
-        self.at = at_str unless @at.nil?
-      end
-
-      # set time information
-      def at=(str)
-        return if str.nil?
-        if Time.parse(str.to_s)
-          @at = str.to_s
-        end
+        @interval = interval
       end
 
       include Comparable

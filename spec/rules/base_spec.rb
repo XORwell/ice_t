@@ -82,18 +82,6 @@ describe IceT::Rule::Base do
         it { expect{subject.class.new("a")}.to raise_error }
       end  
     end
-
-    describe 'param: at' do
-      context 'when valid' do
-        it { expect{subject.class.new(1, "4pm")}.not_to raise_error }
-        it { expect{subject.class.new(1, nil)}.not_to raise_error }
-      end
-      context 'when invalid' do
-        it { expect{subject.class.new(1, "")}.to raise_error }
-        it { expect{subject.class.new(1, -1)}.to raise_error }
-        it { expect{subject.class.new(1, "a")}.to raise_error }
-      end
-    end
   end  
 
   context 'respond_to?' do

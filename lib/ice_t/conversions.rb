@@ -44,9 +44,7 @@ module IceT
         def from_hash(hash)
           rule_class = hash[:rule]
           interval   = hash[:interval].to_i          
-          rule       = eval(rule_class + ".new(#{interval})")
-          rule.at    = hash[:at]
-          rule          
+          eval(rule_class + ".new(#{interval})")
         end
       end
     end

@@ -44,7 +44,6 @@ describe IceT::Schedule do
       before do
         schedule.add_rule(daily_rule)
         schedule.add_rule(monthly_rule)      
-        schedule.add_rule(IceT::Rule::Daily.new(12, "4pm"))      
       end
       let(:json) { schedule.to_json }
       let(:object) { IceT::Schedule.from_json(json) }
