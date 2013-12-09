@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe IceT::Schedule do 
+  let!(:klass) { IceT::Schedule }
   let!(:start_time) { Time.now }
   let!(:end_time) { Time.now + 2.months }
   let!(:schedule) { IceT::Schedule.new(start_time: start_time, end_time: end_time) }
@@ -64,8 +65,20 @@ describe IceT::Schedule do
     end
   end
   
-  describe '::from_yaml' do
-    pending
+  describe '#to_hash' do
+    it "does respond_to :to_hash" do
+      pending "Conversions::Helper.recursive_instance_values"
+      expect(subject).to respond_to(:to_hash)
+    end    
+  end
+
+  describe '::from_yaml' do    
+    it { expect(subject).to respond_to(:to_yaml) }
+    it "does contain same values as before" do
+      pending "serialize Rule::Repository" do
+        expect(IceT::Schedule.from_yaml(schedule.to_yaml) == schedule).to be_true
+      end
+    end
   end
 
 end 

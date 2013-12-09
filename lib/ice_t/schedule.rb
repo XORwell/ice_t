@@ -31,7 +31,7 @@ module IceT
     def_delegator :@rules, :remove, :remove_rule
     def_delegator :@rules, :rules, :rules
 
-    extend IceT::Conversions::Schedule
+    include IceT::Conversions::Schedule
 
     attr_reader :start_time
     attr_reader :end_time

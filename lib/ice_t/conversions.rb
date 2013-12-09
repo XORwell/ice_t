@@ -23,15 +23,31 @@
 
 module IceT
   module Conversions
+    # module Helper
+    #   module_function
+    #   def recursive_instance_values(object)
+    #   end
+    # end
+    
+    module Common
+      module InstanceMethods
+      end
+      module ClassMethods
+        def from_yaml(yaml_string)
+          YAML::load(yaml_string)
+        end
+      end
+    end
+
     module Rule
 
       def self.included(klass)
         klass.extend ClassMethods
       end
-
+      
       def to_hash
         self.instance_values.symbolize_keys
-      end
+      end        
 
       module ClassMethods      
         def from_yaml(yaml_string)
@@ -50,22 +66,29 @@ module IceT
     end
 
     module Schedule
-      def from_json(json_string)
-        data = ActiveSupport::JSON.decode(json_string).symbolize_keys
-        schedule = self.new(start_time: data[:start_time].to_time, end_time: data[:end_time].to_time)
-        data[:rules]["rules"].each{ |rule|
-          schedule.add_rule(
-            IceT::Rule::Base.from_json(rule.to_json)
-          )
-        }        
-        schedule
-      end   
-
-      def from_yaml(yaml_string)
-        schedule = YAML::load(yaml_string)
-        return schedule if schedule.is_a?(IceT::Schedule)
+      
+      def self.included(klass)
+        klass.extend ClassMethods
       end
 
+      module ClassMethods
+        def from_yaml(yaml_string)
+          YAML::load(yaml_string)
+        end
+
+        def from_json(json_string)
+          return unless json_string
+          data = ActiveSupport::JSON.decode(json_string).symbolize_keys
+          schedule = self.new(start_time: data[:start_time].to_time, end_time: data[:end_time].to_time)
+          data[:rules]["rules"].each{ |rule|
+            schedule.add_rule(
+              IceT::Rule::Base.from_json(rule.to_json)
+            )
+          }        
+          schedule
+        end   
+      end
     end
+
   end
 end
