@@ -1,9 +1,9 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'coveralls'
+Coveralls.wear!
 require 'ice_t'
 
-Coveralls.wear!
 
 Dir.glob(File.expand_path("spec/support/**/*.rb")).each{ |f| require f }
 
