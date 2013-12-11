@@ -23,6 +23,8 @@
 
 module IceT
   module TimeHelper
+    PLURALIZED_DAYNAMES = Date::DAYNAMES.map{ |wday| wday.downcase + 's' }
+
     module_function
     #
     # Returns diff of two date by given unit
@@ -34,6 +36,11 @@ module IceT
     def diff_by_unit(start_time, end_time, unit = :days, round = true)
       diff = ((end_time - start_time) / eval("1.#{unit}"))
       diff = (round) ? diff.round : diff
+    end
+
+    def question_mark_dayname(plural_dayname, to_sym = true)
+      name = plural_dayname[0..-2] << '?'
+      to_sym ? name.to_sym : name
     end
   end
 end

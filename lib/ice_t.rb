@@ -13,6 +13,7 @@ module IceT
   
   require 'ice_t/conversions'
   require 'ice_t/rule'
+  require 'ice_t/collection'
 
   # module Rule
   #   autoload :Repository, 'ice_t/rule/repository'
