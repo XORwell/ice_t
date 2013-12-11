@@ -3,7 +3,6 @@
 [![Gem Version](https://badge.fury.io/rb/ice_t.png)](http://badge.fury.io/rb/ice_t)
 [![Code Climate](https://codeclimate.com/github/XORwell/ice_t.png)](https://codeclimate.com/github/XORwell/ice_t)
 [![Build Status](https://travis-ci.org/XORwell/ice_t.png)](https://travis-ci.org/XORwell/ice_t)
-[![Dependency Status](https://gemnasium.com/XORwell/ice_t.png)](https://gemnasium.com/XORwell/ice_t)
 [![Coverage Status](https://coveralls.io/repos/XORwell/ice_t/badge.png)](https://coveralls.io/r/XORwell/ice_t)
 
 IceT is a ruby library for handling repeated events.
