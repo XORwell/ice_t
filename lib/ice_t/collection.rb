@@ -10,13 +10,9 @@ module IceT
     def self.included(klass)
       klass.instance_eval do
         IceT::TimeHelper::PLURALIZED_DAYNAMES.each do |wday|
-          define_method(wday) { |start_date, end_date|
-            @rules.collect{ |rule| 
-              rule.occurrences(start_date, end_date) 
-            }.map { |array|
-              array.select(&IceT::TimeHelper.question_mark_dayname(wday)) 
-            }.flatten
-             .uniq
+          define_method(wday) { |start_time, end_time|
+            occurrences(start_time, end_time)
+              .select(&IceT::TimeHelper.question_mark_dayname(wday)) 
           }
         end
       end
@@ -42,6 +38,13 @@ module IceT
 
     def add_rule(rule)
       @rules << rule unless @rules.include?(rule)
+    end
+
+    def occurrences(start_time, end_time)
+      @rules.collect{ |rule| 
+        rule.occurrences(start_time, end_time) 
+      }.flatten
+       .uniq
     end
 
   end

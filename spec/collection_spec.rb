@@ -5,6 +5,30 @@ describe IceT::Collection do
   let!(:daily_rule_01) { IceT::Rule::Daily.new(1) }
   let!(:daily_rule_02) { IceT::Rule::Daily.new(2) }
   
+  describe '#occurrences' do
+    it { expect(subject).to respond_to(:occurrences) }
+
+    context 'with one rule' do
+      coll = IceT::Collection.new
+      coll.add_rule IceT::Rule::Daily.new(1)
+      subject { coll.occurrences(2.weeks.ago, Time.now) }
+      it "does return an array" do
+        expect(subject).to be_a(Array)
+      end
+      its(:first) { should be_a(Time) }
+    end
+    context 'with two rules' do
+      coll = IceT::Collection.new
+      coll.add_rule IceT::Rule::Daily.new(1)
+      coll.add_rule IceT::Rule::Daily.new(2)
+      subject { coll.occurrences(2.weeks.ago, Time.now) }
+      it "does return an array" do
+        expect(subject).to be_a(Array)
+      end
+      its(:first) { should be_a(Time) }
+    end
+  end
+
   describe '#add_rule' do
     it { expect(subject).to respond_to(:add_rule) }
   
@@ -48,6 +72,7 @@ describe IceT::Collection do
       describe wday do
         coll = IceT::Collection.new
         coll.add_rule IceT::Rule::Daily.new(1)      
+        coll.add_rule IceT::Rule::Daily.new(2)      
         times = coll.send(wday, 1.week.ago, Time.now)
         times.each { |t|
           meth = IceT::TimeHelper.question_mark_dayname(wday)
